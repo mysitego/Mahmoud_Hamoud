@@ -88,7 +88,9 @@
         }
         
         .glassmorphism {
-        
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .typewriter {
@@ -125,38 +127,23 @@
             from { transform: translateY(100px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        
-        .hero-image {
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(45deg, #fbbf24, #f59e0b);
-            border-radius: 20px;
+
+        .parallax-scene {
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            width: 450px;
+            height: 450px;
+            transform-style: preserve-3d;
+            transform: rotateX(20deg) rotateY(-20deg);
+            transition: transform 0.5s ease-out;
         }
-        
-        .hero-image::before {
-            content: '';
+
+        .parallax-layer {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            border: 2px solid rgba(255,255,255,0.2);
-        }
-        
-        .hero-image::after {
-            content: url(hero.png);
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #0f172a;
-            font-size: 1.5rem;
-            font-weight: bold;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease-out;
         }
         
         .animated-border {
@@ -210,10 +197,16 @@
             </div>
             <nav id="nav-menu" class="hidden md:flex space-x-reverse space-x-8">
                 <a href="#services" class="hover:text-accent-yellow  text-blue-800 transition-all duration-300 font-medium">الخدمات</a>
-                <a href="#portfolio" class="hover:text-accent-yellow text-blue-800 transition-all duration-300 font-medium">أعمالي</a>
+                <a href="portfolio.html" class="hover:text-accent-yellow text-blue-800 transition-all duration-300 font-medium">أعمالي</a>
                 <a href="#testimonials" class="hover:text-accent-yellow text-blue-800 transition-all duration-300 font-medium">آراء العملاء</a>
                 <a href="#contact" class="hover:text-accent-yellow text-blue-800 transition-all duration-300 font-medium">تواصل معي</a>
             </nav>
+            <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white/90 backdrop-blur-lg shadow-lg py-4">
+                <a href="#services" class="block text-center text-dark-navy py-2">الخدمات</a>
+                <a href="portfolio.html" class="block text-center text-dark-navy py-2">أعمالي</a>
+                <a href="#testimonials" class="block text-center text-dark-navy py-2">آراء العملاء</a>
+                <a href="#contact" class="block text-center text-dark-navy py-2">تواصل معي</a>
+            </div>
             <button class="bg-accent-yellow text-dark-navy px-6 py-2 rounded-lg font-bold hover:bg-yellow-300 transition-all hidden md:block">
                 استشارة مجانية
             </button>
@@ -271,7 +264,7 @@
                         <span class="relative z-10">🎯 احصل على استشارة مجانية</span>
                         <div class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </button>
-                    <button class="group border-2 border-accent-yellow text-accent-yellow px-8 py-4 rounded-xl font-bold text-lg hover:bg-accent-yellow hover:text-dark-navy transition-all relative overflow-hidden">
+                    <button id="portfolio-btn" class="group border-2 border-accent-yellow text-accent-yellow px-8 py-4 rounded-xl font-bold text-lg hover:bg-accent-yellow hover:text-dark-navy transition-all relative overflow-hidden">
                         <span class="relative z-10">👁️ شاهد أعمالي</span>
                     </button>
                 </div>
@@ -284,43 +277,54 @@
                             <div class="w-8 h-8 bg-secondary-blue rounded-full border-2 border-white"></div>
                             <div class="w-8 h-8 bg-green-400 rounded-full border-2 border-white"></div>
                         </div>
-                        <span class="bg-yellow-300" >+100 عميل راضي</span>
+                        <span class="text-blue-300" >+100 عميل راضي</span>
                     </div>
                     <div class="flex items-center space-x-reverse space-x-1">
                         <span>⭐⭐⭐⭐⭐</span>
-                        <span>تقييم 4.9</span>
+                        <span class="text-blue-300">تقييم 4.9</span>
                     </div>
                 </div>
             </div>
             
-            <!-- Enhanced Hero Image Section -->
-            <div class="relative flex justify-center lg:justify-end group">
-                <div class="relative">
-                    <!-- Main Hero Image -->
-                    <div class="hero-image float group-hover:scale-110 transition-transform duration-300">
-                        <!-- Decorative Elements Around Image -->
-                        <div class="absolute -top-6 -right-6 w-12 h-12 bg-accent-yellow rounded-lg rotate-12 shadow-lg float" style="animation-delay: 0.5s;"></div>
-                        <div class="absolute -bottom-6 -left-6 w-16 h-16 bg-secondary-blue rounded-full shadow-lg float" style="animation-delay: 1s;"></div>
-                        <div class="absolute top-10 -left-8 w-8 h-8 bg-green-400 rounded-full shadow-lg float" style="animation-delay: 1.5s;"></div>
+            <!-- Interactive Parallax Hero Image -->
+            <div class="hidden lg:flex justify-center lg:justify-end perspective-1000">
+                <div id="parallax-scene" class="parallax-scene">
+                    <!-- Layer 1: Base -->
+                    <div class="parallax-layer" data-depth="0.1">
+                        <div class="w-full h-full bg-secondary-blue rounded-3xl shadow-2xl opacity-50"></div>
                     </div>
-                    
-                    <!-- Floating Achievement Cards -->
-                    <div class="absolute -top-8 -left-20 glassmorphism rounded-xl p-4 text-dark-navy shadow-xl float hidden lg:block">
-                        <div class="text-2xl font-bold text-accent-yellow">+85%</div>
-                        <div class="text-sm font-semibold">معدل التحويل</div>
+                    <!-- Layer 2: Image -->
+                    <div class="parallax-layer" data-depth="0.2">
+                        <img src="hero.png" class="w-96 h-96 rounded-3xl shadow-2xl object-cover">
                     </div>
-                    
-                    <div class="absolute -bottom-8 -right-16 glassmorphism rounded-xl p-4 text-dark-navy shadow-xl float hidden lg:block" style="animation-delay: 0.5s;">
-                        <div class="text-2xl font-bold text-green-400">+150</div>
-                        <div class="text-sm font-semibold">مشروع مكتمل</div>
+                    <!-- Layer 3: Main Element -->
+                    <div class="parallax-layer" data-depth="0.4">
+                        <div class="w-80 z-0 h-80 bg-gradient-to-br from-accent-yellow/50 to-yellow-500/50 rounded-3xl shadow-2xl flex items-center justify-center glassmorphism">
+                            <span class="text-dark-navy text-8xl font-black opacity-80"></></span>
+                        </div>
                     </div>
->>>>>>> Stashed changes
-                    
-                    <!-- Code Elements -->
-                    <div class="absolute top-1/2 -left-32 glassmorphism rounded-lg p-3 text-white shadow-xl font-mono text-xs hidden xl:block">
-                        <div class="text-accent-yellow">&lt;landing-page&gt;</div>
-                        <div class="text-green-400 mr-4">conversion: 85%</div>
-                        <div class="text-accent-yellow">&lt;/landing-page&gt;</div>
+                    <!-- Layer 4: Floating UI Card 1 -->
+                    <div class="parallax-layer" data-depth="0.6">
+                        <div class="absolute top-0 left-0 w-48 glassmorphism p-4 rounded-2xl shadow-lg">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-green-400 rounded-full mr-3"></div>
+                                <div>
+                                    <div class="h-3 w-24 bg-white/50 rounded"></div>
+                                    <div class="h-2 w-16 bg-white/30 rounded mt-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Layer 4: Floating UI Card 2 -->
+                    <div class="parallax-layer" data-depth="0.8">
+                        <div class="absolute bottom-0 right-0 w-56 glassmorphism p-4 rounded-2xl shadow-lg">
+                            <div class="h-4 w-full bg-white/50 rounded mb-3"></div>
+                            <div class="h-3 w-3/4 bg-white/30 rounded"></div>
+                        </div>
+                    </div>
+                    <!-- Layer 5: Floating Icon -->
+                    <div class="parallax-layer" data-depth="1">
+                        <div class="absolute bottom-24 -left-12 text-5xl">🚀</div>
                     </div>
                 </div>
             </div>
@@ -639,32 +643,24 @@
                         <h3 class="text-2xl font-bold text-primary-blue mb-6">طرق التواصل</h3>
                         <div class="space-y-6">
                             <div class="flex items-center space-x-reverse space-x-4">
-                                <div class="w-12 h-12 bg-accent-yellow rounded-xl flex items-center justify-center">
-                                    <span class="text-dark-navy text-xl">📧</span>
-                                </div>
-                                <div>
-                                    <div class="font-bold text-primary-blue">البريد الإلكتروني</div>
-                                    <div class="text-gray-600">info@yourwebsite.com</div>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center space-x-reverse space-x-4">
                                 <div class="w-12 h-12 bg-green-400 rounded-xl flex items-center justify-center">
                                     <span class="text-white text-xl">📱</span>
                                 </div>
                                 <div>
                                     <div class="font-bold text-primary-blue">واتساب</div>
-                                    <div class="text-gray-600">+966 50 123 4567</div>
+                                    <a href="https://wa.me/+96774813824" target="_blank" class="text-gray-600 hover:text-primary-blue transition-colors">+05 593 5587</a>
                                 </div>
                             </div>
                             
                             <div class="flex items-center space-x-reverse space-x-4">
-                                <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
-                                    <span class="text-white text-xl">💼</span>
+                                <div class="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                                    </svg>
                                 </div>
                                 <div>
-                                    <div class="font-bold text-primary-blue">لينكد إن</div>
-                                    <div class="text-gray-600">linkedin.com/in/yourprofile</div>
+                                    <div class="font-bold text-primary-blue">موقع اكس</div>
+                                    <a href="https://x.com/Devl_oper" target="_blank" class="text-gray-600 hover:text-primary-blue transition-colors">x.com/Devl_oper</a>
                                 </div>
                             </div>
                         </div>
@@ -771,7 +767,7 @@
                 <div>
                     <h4 class="font-bold text-lg mb-4">روابط مفيدة</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-accent-yellow transition-colors">أعمالي</a></li>
+                        <li><a href="portfolio.html" class="hover:text-accent-yellow transition-colors">أعمالي</a></li>
                         <li><a href="#" class="hover:text-accent-yellow transition-colors">المقالات</a></li>
                         <li><a href="#" class="hover:text-accent-yellow transition-colors">الأسعار</a></li>
                         <li><a href="#" class="hover:text-accent-yellow transition-colors">اتصل بي</a></li>
@@ -808,6 +804,26 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modal -->
+    <div id="portfolio-modal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-sm mx-auto text-center transform transition-all scale-95 opacity-0" id="modal-content">
+            <div class="w-20 h-20 bg-gradient-to-br from-accent-yellow to-orange-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <h3 class="text-2xl font-bold text-primary-blue mb-4">قيد الإعداد حالياً</h3>
+            <p class="text-gray-600 mb-6">
+                أعمل حالياً على تجهيز معرض أعمالي بأفضل شكل ممكن. في هذه الأثناء، يمكنك متابعتي على منصة X لتكون أول من يعلم بالجديد!
+            </p>
+            <a href="https://x.com/Devl_oper" target="_blank" class="inline-flex items-center justify-center w-full bg-gray-800 text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-900 transition-all mb-4">
+                <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                </svg>
+                <span>تابعني على X</span>
+            </a>
+            <button id="close-modal-btn" class="text-gray-500 hover:text-primary-blue transition-colors">أغلق النافذة</button>
+        </div>
+    </div>
 
     <script>
         // Enhanced smooth scrolling
@@ -935,31 +951,113 @@
             });
         };
 
+        const handleParallax = () => {
+            const scene = document.getElementById('parallax-scene');
+            if (!scene) return;
+            const heroSection = scene.closest('section');
+
+            heroSection.addEventListener('mousemove', (e) => {
+                const { clientX, clientY } = e;
+                const { offsetWidth, offsetHeight } = heroSection;
+                
+                const x = (clientX / offsetWidth - 0.5) * 2; // -1 to 1
+                const y = (clientY / offsetHeight - 0.5) * 2; // -1 to 1
+
+                scene.style.transform = `rotateX(${y * -10}deg) rotateY(${x * 10}deg)`;
+
+                for (const layer of scene.children) {
+                    const depth = layer.getAttribute('data-depth');
+                    layer.style.transform = `translateX(${x * depth * 50}px) translateY(${y * depth * 50}px)`;
+                }
+            });
+        };
         // Initialize all animations
         document.addEventListener('DOMContentLoaded', () => {
             animateCounters();
             animateProgressBars();
             observeElements();
             handleHeaderScroll();
+            handleParallax();
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
         });
 
-        // Form submission simulation
+        // Modal logic
+        const portfolioBtn = document.getElementById('portfolio-btn');
+        const portfolioModal = document.getElementById('portfolio-modal');
+        const modalContent = document.getElementById('modal-content');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        const openModal = () => {
+            portfolioModal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 50);
+        };
+
+        const closeModal = () => {
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                portfolioModal.classList.add('hidden');
+            }, 200);
+        };
+
+        portfolioBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        portfolioModal.addEventListener('click', (e) => {
+            if (e.target === portfolioModal) {
+                closeModal();
+            }
+        });
+
+        // Form submission to WhatsApp
         document.querySelector('form').addEventListener('submit', (e) => {
             e.preventDefault();
-            const button = e.target.querySelector('button[type="submit"]');
+            const form = e.target;
+            const button = form.querySelector('button[type="submit"]');
             const originalText = button.innerHTML;
-            
+
+            const name = form.querySelector('input[type="text"]').value;
+            const email = form.querySelector('input[type="email"]').value;
+            const projectType = form.querySelectorAll('select')[0].value;
+            const budget = form.querySelectorAll('select')[1].value;
+            const description = form.querySelector('textarea').value;
+
+            if (!name || !email || !projectType || !description) {
+                alert('الرجاء تعبئة جميع الحقول المطلوبة (*)');
+                return;
+            }
+
             button.innerHTML = '⏳ جاري الإرسال...';
             button.disabled = true;
-            
+
+            const whatsappNumber = '+967774813824'; // Replace with your WhatsApp number
+            const message = `
+طلب جديد من الموقع:
+*الاسم الكامل:* ${name}
+*البريد الإلكتروني:* ${email}
+*نوع المشروع:* ${projectType}
+*الميزانية المتوقعة:* ${budget}
+*وصف المشروع:*
+${description}
+            `;
+
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message.trim())}`;
+
             setTimeout(() => {
-                button.innerHTML = '✅ تم الإرسال بنجاح!';
+                window.open(whatsappUrl, '_blank');
+                button.innerHTML = '✅ تم التوجيه للواتساب!';
                 setTimeout(() => {
                     button.innerHTML = originalText;
                     button.disabled = false;
-                    e.target.reset();
-                }, 2000);
-            }, 2000);
+                    form.reset();
+                }, 3000);
+            }, 1000);
         });
     </script>
 </body>

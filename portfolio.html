@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أعمالي - مطور مواقع ويب</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'ibm': ['IBM Plex Sans Arabic', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-blue': '#1e3a8a',
+                        'secondary-blue': '#3b82f6',
+                        'accent-yellow': '#fbbf24',
+                        'dark-navy': '#0f172a',
+                        'light-blue': '#e0f2fe',
+                    },
+                    animation: {
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+        .card-hover {
+            transition: all 0.3s ease-in-out;
+        }
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .project-image-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .project-image-container img {
+            transition: transform 0.4s ease;
+        }
+        .card-hover:hover .project-image-container img {
+            transform: scale(1.1);
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(30, 58, 138, 0.8);
+            color: white;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+        }
+        .card-hover:hover .overlay {
+            opacity: 1;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .stagger-animation {
+            animation: slideUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="font-ibm bg-light-blue">
+    <!-- Header -->
+    <header id="header" class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50 text-primary-blue py-4 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-reverse space-x-3">
+                <div class="w-12 h-12 bg-accent-yellow rounded-xl flex items-center justify-center shadow-lg">
+                    <span class="text-dark-navy font-bold text-xl"></></span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-blue-800">مطور مواقع ويب</h1>
+                    <p class="text-xs text-gray-500">خبير صفحات الهبوط</p>
+                </div>
+            </a>
+            <nav class="hidden md:flex space-x-reverse space-x-8">
+                <a href="index.html#services" class="hover:text-accent-yellow text-blue-800 transition-all duration-300 font-medium">الخدمات</a>
+                <a href="portfolio.html" class="text-accent-yellow transition-all duration-300 font-medium border-b-2 border-accent-yellow pb-1">أعمالي</a>
+                <a href="index.html#testimonials" class="hover:text-accent-yellow text-blue-800 transition-all duration-300 font-medium">آراء العملاء</a>
+                <a href="index.html#contact" class="hover:text-accent-yellow text-blue-800 transition-all duration-300 font-medium">تواصل معي</a>
+            </nav>
+            <a href="index.html#contact" class="bg-accent-yellow text-dark-navy px-6 py-2 rounded-lg font-bold hover:bg-yellow-300 transition-all hidden md:block transform hover:scale-105">
+                اطلب مشروعك
+            </a>
+        </div>
+    </header>
+
+    <!-- Portfolio Section -->
+    <main class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <div class="inline-block mb-4">
+                    <span class="bg-primary-blue text-white px-6 py-2 rounded-full text-sm font-bold">
+                        🎨 معرض أعمالي
+                    </span>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-black text-primary-blue mb-6">
+                    صفحات هبوط تحقق نتائج
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    تصفح مجموعة من صفحات الهبوط التي قمت بتصميمها وتطويرها لعملاء في مختلف المجالات، مع التركيز على تحقيق أعلى معدلات التحويل.
+                </p>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <!-- Project Card 1 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover stagger-animation" style="animation-delay: 100ms;">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1559028006-44d5a2e76832?q=80&w=1935&auto=format&fit=crop" alt="موك اب لمشروع تطبيق SaaS" class="w-full h-64 object-cover">
+                        <div class="overlay">
+                            <div class="p-4">
+                                <h4 class="text-xl font-bold mb-2">زيادة الاشتراكات بنسبة 40%</h4>
+                                <p>تم تحقيق هذه النتيجة من خلال تصميم يركز على دعوة واضحة لاتخاذ إجراء (CTA) وتجربة مستخدم سلسة.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary-blue mb-3">صفحة هبوط لتطبيق SaaS</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            صفحة هبوط مصممة لشركة تقنية تهدف إلى زيادة عدد المشتركين في تطبيقها. تم التركيز على إبراز الميزات الرئيسية والفوائد للمستخدم.
+                        </p>
+                        <a href="#" target="_blank" class="inline-block w-full text-center bg-accent-yellow text-dark-navy px-6 py-3 rounded-lg font-bold hover:bg-yellow-300 transition-all transform hover:scale-105">
+                            معاينة الصفحة
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover stagger-animation" style="animation-delay: 200ms;">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1586980266528-9cee70433b43?q=80&w=1935&auto=format&fit=crop" alt="موك اب لصفحة عقارات" class="w-full h-64 object-cover">
+                         <div class="overlay">
+                            <div class="p-4">
+                                <h4 class="text-xl font-bold mb-2">تجميع 500+ عميل محتمل</h4>
+                                <p>تصميم فاخر وعرض جذاب للعقارات مع نموذج تواصل بسيط وفعال أدى لزيادة كبيرة في عدد المهتمين.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary-blue mb-3">صفحة هبوط لمشروع عقاري</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            صفحة هبوط فاخرة لعرض مشروع سكني جديد. تم استخدام صور عالية الجودة وتصميم أنيق لجذب المشترين المحتملين وتشجيعهم على التواصل.
+                        </p>
+                        <a href="#" target="_blank" class="inline-block w-full text-center bg-accent-yellow text-dark-navy px-6 py-3 rounded-lg font-bold hover:bg-yellow-300 transition-all transform hover:scale-105">
+                            معاينة الصفحة
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover stagger-animation" style="animation-delay: 300ms;">
+                    <div class="project-image-container">
+                        <img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?q=80&w=1780&auto=format&fit=crop" alt="موك اب لصفحة دورة تدريبية" class="w-full h-64 object-cover">
+                         <div class="overlay">
+                            <div class="p-4">
+                                <h4 class="text-xl font-bold mb-2">مبيعات تجاوزت 10,000$</h4>
+                                <p>من خلال عرض تفصيلي لمحتوى الدورة وآراء الطلاب السابقين، تم بناء ثقة الزائر وزيادة معدل الشراء.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-primary-blue mb-3">صفحة هبوط لدورة تدريبية</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            صفحة مصممة خصيصًا لبيع دورة تدريبية عبر الإنترنت. تحتوي على جميع العناصر اللازمة لإقناع الزائر، من وصف الدورة إلى آراء المشاركين.
+                        </p>
+                        <a href="#" target="_blank" class="inline-block w-full text-center bg-accent-yellow text-dark-navy px-6 py-3 rounded-lg font-bold hover:bg-yellow-300 transition-all transform hover:scale-105">
+                            معاينة الصفحة
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="bg-white py-20">
+        <div class="max-w-4xl mx-auto text-center px-6">
+            <h2 class="text-3xl md:text-5xl font-black text-primary-blue mb-6">هل لديك فكرة مشروع؟</h2>
+            <p class="text-xl text-gray-600 mb-8">
+                دعنا نحول فكرتك إلى صفحة هبوط احترافية تحقق لك أفضل النتائج. تواصل معي الآن للحصول على استشارة مجانية.
+            </p>
+            <a href="index.html#contact" class="inline-block bg-gradient-to-r from-primary-blue to-secondary-blue text-white py-4 px-10 rounded-xl font-bold text-lg hover:shadow-xl transition-all transform hover:scale-105">
+                🚀 لنبدأ مشروعك
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-navy text-white py-16 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="border-t border-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">جميع الحقوق محفوظة © 2025 - مطور مواقع ويب</p>
+                    <div class="flex space-x-reverse space-x-6 text-gray-400">
+                        <a href="#" class="hover:text-accent-yellow transition-colors">الشروط والأحكام</a>
+                        <a href="#" class="hover:text-accent-yellow transition-colors">سياسة الخصوصية</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
