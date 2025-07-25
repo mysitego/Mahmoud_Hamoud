@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطور مواقع ويب - صفحات هبوط احترافية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'ibm': ['IBM Plex Sans Arabic', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-blue': '#1e3a8a',
+                        'secondary-blue': '#3b82f6',
+                        'accent-yellow': '#fbbf24',
+                        'dark-navy': '#0f172a',
+                        'light-blue': '#e0f2fe',
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 2s infinite',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'typewriter': 'typewriter 4s steps(40) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 30%, #3b82f6 70%, #60a5fa 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(251, 191, 36, 0.1) 0%, transparent 0%),
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 0%),
+                radial-gradient(circle at 40% 80%, rgba(251, 191, 36, 0.05) 0%, transparent 0%);
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .float:nth-child(2) { animation-delay: 2s; }
+        .float:nth-child(3) { animation-delay: 4s; }
+        .float:nth-child(4) { animation-delay: 1s; }
+        .float:nth-child(5) { animation-delay: 3s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(-40px) rotate(0deg); }
+            75% { transform: translateY(-20px) rotate(-5deg); }
+        }
+        
+        .morphing-blob {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: morph 8s ease-in-out infinite;
+        }
+        
+        @keyframes morph {
+            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            25% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+            75% { border-radius: 30% 70% 40% 60% / 50% 60% 30% 70%; }
+        }
+        
+        .glassmorphism {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .typewriter {
+            border-left: 4px solid #fbbf24;
+            animation: typewriter 4s steps(40) infinite;
+        }
+        
+        @keyframes typewriter {
+            0%, 90%, 100% { border-color: #fbbf24; }
+            50% { border-color: transparent; }
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .hero-image {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+        
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .hero-image::after {
+            content: url(hero.png);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #0f172a;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .animated-border {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .animated-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.5), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .counter {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .progress-bar {
+            transition: width 2s ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-ibm">
+    <!-- Enhanced Header with Glassmorphism -->
+    <header class="fixed w-full top-0 z-50 glassmorphism text-dark-navynavynavy p
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-reverse space-x-3">
+                <div class="w-12 h-12 bg-accent-yellow rounded-xl flex items-center justify-center shadow-lg">
+                    <span class="text-dark-navy font-bold text-xl">&lt;l&gt;;l&gt;;/&gt;</span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold">مطور مواقع ويب</h1>
+                    <p class="text-xs text-gray-5
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-reverse space-x-8">
+                <a href="#services" class="hover:text-accent-yellow transition-all duration-300 font-medium">الخدمات</a>
+                <a href="#portfolio" class="hover:text-accent-yellow transition-all duration-300 font-medium">أعمالي</a>
+                <a href="#testimonials" class="hover:text-accent-yellow transition-all duration-300 font-medium">آراء العملاء</a>
+                <a href="#contact" class="hover:text-accent-yellow transition-all duration-300 font-medium">تواصل معي</a>
+            </nav>
+            <button class="bg-accent-yellow text-dark-navy px-6 py-2 rounded-lg font-bold hover:bg-yellow-300 transition-all hidden md:block">
+                استشارة مجانية
+            </button>
+            <button class="md:hidden text-dak-vy
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Revolutionary Hero Section -->
+    <section class="hero-gradient hero-pattern min-h-screen flex items-center py-32 px-6 relative">
+        <!-- Floating Background Elements -->
+        <div class="floating-elements">
+            <div class="absolute top-20 right-16 w-32 h-32 bg-accent-yellow opacity-20 rounded-full float"></div>
+            <div class="absolute top-40 left-20 w-24 h-24 bg-secondary-blue opacity-15 rounded-lg float"></div>
+            <div class="absolute bottom-40 right-32 w-28 h-28 bg-yellow-300 opacity-25 morphing-blob float"></div>
+            <div class="absolute bottom-20 left-16 w-20 h-20 bg-blue-400 opacity-20 rounded-full float"></div>
+            <div class="absolute top-60 left-1/2 w-16 h-16 bg-accent-yellow opacity-30 rounded-lg float"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            <!-- Enhanced Text Content -->
+            <div class="text-white space-y-8 slide-up">
+                <div class="space-y-4">
+                    <div class="inline-block">
+                        <span class="bg-accent-yellow text-dark-navy px-4 py-2 rounded-full text-sm font-bold animated-border">
+                            🚀 خبير تحويل الزوار لعملاء
+                        </span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight">
+                        <span class="block">وداعاً للفرص</span>
+                        <span class="block text-accent-yellow typewriter">الضائعة!</span>
+                    </h1>
+                    
+                    <div class="text-2xl md:text-3xl font-bold text-white mb-6">
+                        أهلاً بصفحة هبوطك الاحترافية
+                    </div>
+                </div>
+                
+                <div class="glassmorphism rounded-2xl p-6 space-y-4">
+                    <p class="text-xl md:text-2xl font-bold text-accent-yellow">
+                        💡 أحوّل الزوّار لعملاء مدفوعين!
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        متخصص في تصميم صفحات الهبوط الاحترافية التي تضمن لك أعلى معدلات التحويل. 
+                        خليني أساعدك في تضخيم مبيعاتك وتحقيق أهدافك التسويقية بطرق مبتكرة ومجربة.
+                    </p>
+                </div>
+                
+                <!-- Enhanced CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="group bg-accent-yellow text-dark-navy px-8 py-4 rounded-xl font-bold text-lg hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-xl relative overflow-hidden">
+                        <span class="relative z-10">🎯 احصل على استشارة مجانية</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </button>
+                    <button class="group border-2 border-accent-yellow text-accent-yellow px-8 py-4 rounded-xl font-bold text-lg hover:bg-accent-yellow hover:text-dark-navy transition-all relative overflow-hidden">
+                        <span class="relative z-10">👁️ شاهد أعمالي</span>
+                    </button>
+                </div>
+                
+                <!-- Social Proof Mini -->
+                <div class="flex items-center space-x-reverse space-x-6 text-sm">
+                    <div class="flex items-center space-x-reverse space-x-2">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 bg-accent-yellow rounded-full border-2 border-white"></div>
+                            <div class="w-8 h-8 bg-secondary-blue rounded-full border-2 border-white"></div>
+                            <div class="w-8 h-8 bg-green-400 rounded-full border-2 border-white"></div>
+                        </div>
+                        <span>+100 عميل راضي</span>
+                    </div>
+                    <div class="flex items-center space-x-reverse space-x-1">
+                        <span>⭐⭐⭐⭐⭐</span>
+                        <span>تقييم 4.9</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enhanced Hero Image Section -->
+            <div class="relative flex justify-center lg:justify-end">
+                <div class="relative">
+                    <!-- Main Hero Image -->
+                    <div class="hero-image float">
+                        <!-- Decorative Elements Around Image -->
+                        <div class="absolute -top-6 -right-6 w-12 h-12 bg-accent-yellow rounded-lg rotate-12 shadow-lg"></div>
+                        <div class="absolute -bottom-6 -left-6 w-16 h-16 bg-secondary-blue rounded-full shadow-lg"></div>
+                        <div class="absolute top-10 -left-8 w-8 h-8 bg-green-400 rounded-full shadow-lg"></div>
+                    </div>
+                    
+                    <!-- Floating Achievement Cards -->
+                    <div class="absolute -top-8 -left-20 glassmorphism rounded-xl p-4 text-white shadow-xl float hidden lg:block">
+                        <div class="text-2xl font-bold text-accent-yellow">+85%</div>
+                        <div class="text-sm">معدل التحويل</div>
+                    </div>
+                    
+                    <div class="absolute -bottom-8 -right-16 glassmorphism rounded-xl p-4 text-white shadow-xl float hidden lg:block">
+                        <div class="text-2xl font-bold text-green-400">+150</div>
+                        <div class="text-sm">مشروع مكتمل</div>
+                    </div>
+                    
+                    <!-- Code Elements -->
+                    <div class="absolute top-1/2 -left-32 glassmorphism rounded-lg p-3 text-white shadow-xl font-mono text-xs hidden xl:block">
+                        <div class="text-accent-yellow">&lt;landing-page&gt;</div>
+                        <div class="text-green-400 mr-4">conversion: 85%</div>
+                        <div class="text-accent-yellow">&lt;/landing-page&gt;</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+            <div class="flex flex-col items-center space-y-2">
+                <span class="text-sm">اكتشف المزيد</span>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Services Section -->
+    <section id="services" class="py-20 px-6 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-20 left-20 w-40 h-40 bg-primary-blue rounded-full"></div>
+            <div class="absolute bottom-20 right-20 w-60 h-60 bg-accent-yellow rounded-full"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-20">
+                <div class="inline-block mb-4">
+                    <span class="bg-primary-blue text-white px-6 py-2 rounded-full text-sm font-bold">
+                        🛠️ خدماتي المتخصصة
+                    </span>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-black text-primary-blue mb-6">
+                    حلول شاملة لنجاحك
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    أقدم خدمات متكاملة في تطوير المواقع وصفحات الهبوط مع ضمان أعلى معدلات التحويل
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Enhanced Service Cards -->
+                <div class="group bg-white p-8 rounded-2xl shadow-lg card-hover relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-blue to-secondary-blue"></div>
+                    <div class="w-20 h-20 bg-gradient-to-br from-primary-blue to-secondary-blue rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <span class="text-white text-3xl font-bold">LP</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary-blue mb-4">مصمم صفحات هبوط</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">تصميم صفحات هبوط محترفة ومحسنة للتحويل مع تجربة مستخدم استثنائية وتحليل سلوك المستخدمين</p>
+                    <div class="flex items-center text-accent-yellow font-bold">
+                        <span>اعرف المزيد</span>
+                        <svg class="w-5 h-5 mr-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="group bg-white p-8 rounded-2xl shadow-lg card-hover relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-yellow to-orange-400"></div>
+                    <div class="w-20 h-20 bg-gradient-to-br from-accent-yellow to-orange-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <span class="text-dark-navy text-3xl font-bold">WD</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary-blue mb-4">مطور مواقع ويب</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">تطوير مواقع ويب متجاوبة وسريعة باستخدام أحدث التقنيات مع تحسين محركات البحث</p>
+                    <div class="flex items-center text-accent-yellow font-bold">
+                        <span>اعرف المزيد</span>
+                        <svg class="w-5 h-5 mr-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="group bg-white p-8 rounded-2xl shadow-lg card-hover relative overflow-hidden md:col-span-2 lg:col-span-1">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-emerald-500"></div>
+                    <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <span class="text-white text-3xl font-bold">UX</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary-blue mb-4">تصميم تجربة المستخدم</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">تصميم واجهات مستخدم جذابة ومريحة بصرياً تحسن من تجربة العملاء وتزيد معدلات التحويل</p>
+                    <div class="flex items-center text-accent-yellow font-bold">
+                        <span>اعرف المزيد</span>
+                        <svg class="w-5 h-5 mr-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Stats Section with Counters -->
+    <section class="py-20 px-6 bg-gradient-to-r from-primary-blue via-secondary-blue to-primary-blue text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">نتائج تتحدث عن نفسها</h2>
+                <p class="text-xl text-blue-200">أرقام حقيقية من مشاريع ناجحة</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center group">
+                    <div class="bg-accent-yellow w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <span class="text-3xl">🚀</span>
+                    </div>
+                    <div class="text-4xl md:text-6xl font-black text-accent-yellow mb-2 counter" data-target="150">0</div>
+                    <p class="text-lg font-medium">مشروع مكتمل</p>
+                    <div class="w-16 h-1 bg-accent-yellow mx-auto mt-2 progress-bar" style="width: 0%"></div>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="bg-green-400 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <span class="text-3xl">📈</span>
+                    </div>
+                    <div class="text-4xl md:text-6xl font-black text-green-400 mb-2 counter" data-target="85">0</div>
+                    <p class="text-lg font-medium">معدل التحويل %</p>
+                    <div class="w-16 h-1 bg-green-400 mx-auto mt-2 progress-bar" style="width: 0%"></div>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="bg-purple-400 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <span class="text-3xl">😊</span>
+                    </div>
+                    <div class="text-4xl md:text-6xl font-black text-purple-400 mb-2 counter" data-target="120">0</div>
+                    <p class="text-lg font-medium">عميل راضي</p>
+                    <div class="w-16 h-1 bg-purple-400 mx-auto mt-2 progress-bar" style="width: 0%"></div>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="bg-pink-400 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <span class="text-3xl">⏰</span>
+                    </div>
+                    <div class="text-4xl md:text-6xl font-black text-pink-400 mb-2">24/7</div>
+                    <p class="text-lg font-medium">دعم فني</p>
+                    <div class="w-16 h-1 bg-pink-400 mx-auto mt-2 progress-bar" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Testimonials Section -->
+    <section id="testimonials" class="py-20 px-6 bg-gradient-to-br from-primary-blue to-secondary-blue relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block mb-4">
+                    <span class="bg-accent-yellow text-dark-navy px-6 py-2 rounded-full text-sm font-bold">
+                        💬 آراء العملاء
+                    </span>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">قصص نجاح حقيقية</h2>
+                <p class="text-xl text-blue-200">شاهد ما يقوله عملاؤنا عن تجربتهم معنا</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card rounded-2xl p-8 text-white">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-accent-yellow rounded-full flex items-center justify-center text-2xl">👨‍💼</div>
+                        <div class="mr-4">
+                            <h4 class="font-bold text-lg">أحمد محمد</h4>
+                            <p class="text-blue-200">مدير تسويق</p>
+                        </div>
+                    </div>
+                    <div class="text-accent-yellow mb-4">⭐⭐⭐⭐⭐</div>
+                    <p class="text-lg leading-relaxed">
+                        "زادت مبيعاتي بنسبة 150% بعد إنشاء صفحة الهبوط. تصميم رائع وأداء ممتاز!"
+                    </p>
+                </div>
+                
+                <div class="testimonial-card rounded-2xl p-8 text-white">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-green-400 rounded-full flex items-center justify-center text-2xl">👩‍💼</div>
+                        <div class="mr-4">
+                            <h4 class="font-bold text-lg">فاطمة علي</h4>
+                            <p class="text-blue-200">صاحبة متجر إلكتروني</p>
+                        </div>
+                    </div>
+                    <div class="text-accent-yellow mb-4">⭐⭐⭐⭐⭐</div>
+                    <p class="text-lg leading-relaxed">
+                        "الموقع سريع ومتجاوب، والدعم الفني ممتاز. أنصح بالتعامل معه بقوة!"
+                    </p>
+                </div>
+                
+                <div class="testimonial-card rounded-2xl p-8 text-white md:col-span-2 lg:col-span-1">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-purple-400 rounded-full flex items-center justify-center text-2xl">👨‍🎓</div>
+                        <div class="mr-4">
+                            <h4 class="font-bold text-lg">خالد السالم</h4>
+                            <p class="text-blue-200">مدرب أونلاين</p>
+                        </div>
+                    </div>
+                    <div class="text-accent-yellow mb-4">⭐⭐⭐⭐⭐</div>
+                    <p class="text-lg leading-relaxed">
+                        "احترافية عالية في التصميم والتنفيذ. حقق أهدافي في زيادة التسجيل بدوراتي"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Why Choose Me Section -->
+    <section class="py-20 px-6 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <div>
+                        <div class="inline-block mb-4">
+                            <span class="bg-primary-blue text-white px-6 py-2 rounded-full text-sm font-bold">
+                                🏆 لماذا أنا؟
+                            </span>
+                        </div>
+                        <h2 class="text-4xl md:text-6xl font-black text-primary-blue mb-6">
+                            الخيار الأمثل لنجاحك
+                        </h2>
+                        <p class="text-xl text-gray-600 leading-relaxed">
+                            سنوات من الخبرة والنتائج المثبتة في تحويل الأفكار إلى واقع رقمي ناجح
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-reverse space-x-4 group">
+                            <div class="w-16 h-16 bg-gradient-to-br from-accent-yellow to-orange-400 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                <span class="text-dark-navy font-bold text-2xl">⚡</span>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary-blue mb-2">خبرة متقدمة</h3>
+                                <p class="text-gray-600 leading-relaxed">+5 سنوات في تطوير المواقع وتحسين معدلات التحويل مع شهادات احترافية</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-reverse space-x-4 group">
+                            <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                <span class="text-white font-bold text-2xl">🚀</span>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary-blue mb-2">تسليم سريع</h3>
+                                <p class="text-gray-600 leading-relaxed">التزام كامل بالمواعيد المحددة مع ضمان الجودة العالية في كل مشروع</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-reverse space-x-4 group">
+                            <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                <span class="text-white font-bold text-2xl">💎</span>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary-blue mb-2">دعم مستمر</h3>
+                                <p class="text-gray-600 leading-relaxed">متابعة مستمرة وصيانة دورية مع تدريب مجاني على إدارة الموقع</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Enhanced Offer Card -->
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary-blue to-secondary-blue rounded-3xl transform rotate-3"></div>
+                    <div class="relative bg-gradient-to-br from-primary-blue to-secondary-blue p-8 rounded-3xl text-white shadow-2xl">
+                        <div class="absolute top-4 left-4 bg-accent-yellow text-dark-navy px-4 py-2 rounded-full text-sm font-bold">
+                            🔥 عرض محدود
+                        </div>
+                        
+                        <div class="mt-8 space-y-6">
+                            <h3 class="text-3xl font-bold">احصل على عرض خاص</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-reverse space-x-3">
+                                    <span class="text-accent-yellow">✓</span>
+                                    <span>استشارة مجانية (قيمة 200$)</span>
+                                </div>
+                                <div class="flex items-center space-x-reverse space-x-3">
+                                    <span class="text-accent-yellow">✓</span>
+                                    <span>تصميم مبدئي مجاني</span>
+                                </div>
+                                <div class="flex items-center space-x-reverse space-x-3">
+                                    <span class="text-accent-yellow">✓</span>
+                                    <span>تحليل موقعك الحالي</span>
+                                </div>
+                                <div class="flex items-center space-x-reverse space-x-3">
+                                    <span class="text-accent-yellow">✓</span>
+                                    <span>خطة تحسين مخصصة</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-accent-yellow text-dark-navy py-4 px-6 rounded-xl text-center">
+                                <div class="text-sm font-bold">خصم حصري</div>
+                                <div class="text-3xl font-black">30%</div>
+                                <div class="text-sm">للعملاء الجدد</div>
+                            </div>
+                            
+                            <button class="w-full bg-white text-primary-blue py-4 px-6 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
+                                🎯 احجز استشارتك المجانية الآن
+                            </button>
+                            
+                            <p class="text-center text-blue-200 text-sm">
+                                ⏰ العرض متاح لـ 48 ساعة فقط
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block mb-4">
+                    <span class="bg-primary-blue text-white px-6 py-2 rounded-full text-sm font-bold">
+                        📞 تواصل معي
+                    </span>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-black text-primary-blue mb-6">جاهز لبدء مشروعك؟</h2>
+                <p class="text-xl text-gray-600 mb-8">تواصل معي الآن ولنبدأ في تحويل زوارك إلى عملاء مخلصين</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-primary-blue mb-6">طرق التواصل</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-reverse space-x-4">
+                                <div class="w-12 h-12 bg-accent-yellow rounded-xl flex items-center justify-center">
+                                    <span class="text-dark-navy text-xl">📧</span>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-primary-blue">البريد الإلكتروني</div>
+                                    <div class="text-gray-600">info@yourwebsite.com</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-reverse space-x-4">
+                                <div class="w-12 h-12 bg-green-400 rounded-xl flex items-center justify-center">
+                                    <span class="text-white text-xl">📱</span>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-primary-blue">واتساب</div>
+                                    <div class="text-gray-600">+966 50 123 4567</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-reverse space-x-4">
+                                <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
+                                    <span class="text-white text-xl">💼</span>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-primary-blue">لينكد إن</div>
+                                    <div class="text-gray-600">linkedin.com/in/yourprofile</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div class="bg-gradient-to-br from-primary-blue to-secondary-blue p-8 rounded-2xl text-white">
+                        <h3 class="text-2xl font-bold mb-6">متوسط أوقات الاستجابة</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-accent-yellow">< 2</div>
+                                <div class="text-sm">ساعات للرد</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-accent-yellow">7-14</div>
+                                <div class="text-sm">يوم للتسليم</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Enhanced Contact Form -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <form class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-primary-blue font-bold mb-2">اسمك الكامل *</label>
+                                <input type="text" placeholder="أدخل اسمك" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary-blue transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-primary-blue font-bold mb-2">بريدك الإلكتروني *</label>
+                                <input type="email" placeholder="your@email.com" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary-blue transition-colors">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-primary-blue font-bold mb-2">نوع المشروع *</label>
+                            <select class="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary-blue transition-colors">
+                                <option>صفحة هبوط</option>
+                                <option>موقع ويب كامل</option>
+                                <option>متجر إلكتروني</option>
+                                <option>تطبيق ويب</option>
+                                <option>أخرى</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-primary-blue font-bold mb-2">الميزانية المتوقعة</label>
+                            <select class="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary-blue transition-colors">
+                                <option>أقل من 5000 ريال</option>
+                                <option>5000 - 10000 ريال</option>
+                                <option>10000 - 20000 ريال</option>
+                                <option>أكثر من 20000 ريال</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-primary-blue font-bold mb-2">وصف مختصر لمشروعك *</label>
+                            <textarea placeholder="أخبرني عن مشروعك وأهدافك..." rows="4" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary-blue transition-colors"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-gradient-to-r from-primary-blue to-secondary-blue text-white py-4 px-8 rounded-xl font-bold text-lg hover:from-blue-800 hover:to-blue-600 transition-all transform hover:scale-105 shadow-lg">
+                            🚀 أرسل طلبك الآن
+                        </button>
+                        
+                        <p class="text-center text-gray-500 text-sm">
+                            سأتواصل معك خلال 24 ساعة كحد أقصى
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Footer -->
+    <footer class="bg-dark-navy text-white py-16 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-reverse space-x-3">
+                        <div class="w-12 h-12 bg-accent-yellow rounded-xl flex items-center justify-center">
+                            <span class="text-dark-navy font-bold text-xl">&lt;/&gt;</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">مطور مواقع ويب</h3>
+                            <p class="text-gray-400 text-sm">خبير صفحات الهبوط</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">
+                        متخصص في تحويل الزوار إلى عملاء من خلال صفحات هبوط احترافية ومواقع ويب متطورة
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">الخدمات</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-accent-yellow transition-colors">صفحات الهبوط</a></li>
+                        <li><a href="#" class="hover:text-accent-yellow transition-colors">تطوير المواقع</a></li>
+                        <li><a href="#" class="hover:text-accent-yellow transition-colors">تصميم UX/UI</a></li>
+                        <li><a href="#" class="hover:text-accent-yellow transition-colors">تحسين التحويل</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">روابط مفيدة</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-accent-yellow transition-colors">أعمالي</a></li>
+                        <li><a href="#" class="hover:text-accent-yellow transition-colors">المقالات</a></li>
+                        <li><a href="#" class="hover:text-accent-yellow transition-colors">الأسعار</a></li>
+                        <li><a href="#" class="hover:text-accent-yellow transition-colors">اتصل بي</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">تابعني</h4>
+                    <div class="flex space-x-reverse space-x-4">
+                        <a href="#" class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors">
+                            <span class="text-sm">f</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center hover:bg-blue-400 transition-colors">
+                            <span class="text-sm">t</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-pink-600 rounded-lg flex items-center justify-center hover:bg-pink-500 transition-colors">
+                            <span class="text-sm">i</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center hover:bg-red-500 transition-colors">
+                            <span class="text-sm">y</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">جميع الحقوق محفوظة © 2025 - مطور مواقع ويب</p>
+                    <div class="flex space-x-reverse space-x-6 text-gray-400">
+                        <a href="#" class="hover:text-accent-yellow transition-colors">الشروط والأحكام</a>
+                        <a href="#" class="hover:text-accent-yellow transition-colors">سياسة الخصوصية</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            const options = {
+                threshold: 0.7
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        const increment = target / 100;
+                        let current = 0;
+
+                        const updateCounter = () => {
+                            if (current < target) {
+                                current += increment;
+                                counter.textContent = Math.ceil(current);
+                                setTimeout(updateCounter, 20);
+                            } else {
+                                counter.textContent = target;
+                            }
+                        };
+
+                        updateCounter();
+                        observer.unobserve(counter);
+                    }
+                });
+            }, options);
+
+            counters.forEach(counter => {
+                observer.observe(counter);
+            });
+        }
+
+        // Progress bars animation
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-bar');
+            const options = {
+                threshold: 0.7
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const progressBar = entry.target;
+                        progressBar.style.width = '100%';
+                        observer.unobserve(progressBar);
+                    }
+                });
+            }, options);
+
+            progressBars.forEach(bar => {
+                observer.observe(bar);
+            });
+        }
+
+        // Intersection Observer for animations
+        const observeElements = () => {
+            const elements = document.querySelectorAll('section');
+            const options = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('slide-up');
+                    }
+                });
+            }, options);
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        };
+
+        // Header scroll effect
+        const handleHeaderScroll = () => {
+            const header = document.querySelector('header');
+            let lastScrollTop = 0;
+
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 100) {
+                    header.style.backgroundColor = 'rgba(15, 23, 42, 0.95)';
+                    header.style.backdropFilter = 'blur(20px)';
+                } else {
+                    header.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                    header.style.backdropFilter = 'blur(10px)';
+                }
+
+                lastScrollTop = scrollTop;
+            });
+        };
+
+        // Initialize all animations
+        document.addEventListener('DOMContentLoaded', () => {
+            animateCounters();
+            animateProgressBars();
+            observeElements();
+            handleHeaderScroll();
+        });
+
+        // Form submission simulation
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const button = e.target.querySelector('button[type="submit"]');
+            const originalText = button.innerHTML;
+            
+            button.innerHTML = '⏳ جاري الإرسال...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.innerHTML = '✅ تم الإرسال بنجاح!';
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    e.target.reset();
+                }, 2000);
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
